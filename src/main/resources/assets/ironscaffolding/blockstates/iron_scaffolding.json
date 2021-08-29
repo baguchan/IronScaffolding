@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"bottom=false": {
+			"model": "ironscaffolding:block/iron_scaffolding_stable"
+		},
+		"bottom=true": {
+			"model": "ironscaffolding:block/iron_scaffolding_unstable"
+		}
+	}
+}
