@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -85,7 +86,7 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 	}
 
 	public BlockState updateShape(BlockState p_56044_, Direction p_56045_, BlockState p_56046_, LevelAccessor p_56047_, BlockPos p_56048_, BlockPos p_56049_) {
-		if (p_56044_.hasProperty(FLUIDLOGGED)) {
+		if (p_56044_.getValue(FLUIDLOGGED) != FluidType.EMPTY) {
 			Fluid fluid = p_56044_.getValue(FLUIDLOGGED).getFluid();
 			p_56047_.getLiquidTicks().scheduleTick(p_56048_, fluid, fluid.getTickDelay(p_56047_));
 		}
@@ -125,8 +126,8 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 	}
 
 	public FluidState getFluidState(BlockState p_56073_) {
-		if (p_56073_.hasProperty(FLUIDLOGGED)) {
-			return p_56073_.getValue(FLUIDLOGGED).getFluid().defaultFluidState();
+		if (p_56073_.getValue(FLUIDLOGGED).getFluid() instanceof FlowingFluid) {
+			return ((FlowingFluid) p_56073_.getValue(FLUIDLOGGED).getFluid()).getSource(false);
 		}
 
 		return super.getFluidState(p_56073_);

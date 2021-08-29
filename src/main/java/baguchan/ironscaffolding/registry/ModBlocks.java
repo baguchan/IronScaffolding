@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 
 @EventBusSubscriber(modid = IronScaffolding.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ModBlocks {
-  public static final Block IRON_SCAFFOLDING = new IronScaffoldingBlock(BlockBehaviour.Properties.of(Material.DECORATION, MaterialColor.SAND).strength(2.0F, 10.0F).noCollission().sound(SoundType.SCAFFOLDING).dynamicShape());
+  public static final Block IRON_SCAFFOLDING = new IronScaffoldingBlock(BlockBehaviour.Properties.of(Material.DECORATION, MaterialColor.SAND).strength(2.0F, 10.0F).noCollission().sound(SoundType.NETHERITE_BLOCK).dynamicShape());
 
   @SubscribeEvent
   public static void registerBlocks(RegistryEvent.Register<Block> registry) {

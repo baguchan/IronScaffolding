@@ -15,11 +15,11 @@ import java.util.Optional;
 
 public interface IFluidLoggable extends SimpleWaterloggedBlock {
 	default boolean canPlaceLiquid(BlockGetter p_56301_, BlockPos p_56302_, BlockState p_56303_, Fluid p_56304_) {
-		return p_56303_.hasProperty(ModBlockStateProperties.FLUID) && p_56304_ != Fluids.EMPTY;
+		return p_56303_.getValue(ModBlockStateProperties.FLUID).getFluid() == Fluids.EMPTY && p_56304_ != Fluids.EMPTY;
 	}
 
 	default boolean placeLiquid(LevelAccessor p_56306_, BlockPos p_56307_, BlockState p_56308_, FluidState p_56309_) {
-		if (p_56308_.hasProperty(ModBlockStateProperties.FLUID) && p_56309_.getType() != Fluids.EMPTY) {
+		if (p_56308_.getValue(ModBlockStateProperties.FLUID).getFluid() == Fluids.EMPTY && p_56309_.getType() != Fluids.EMPTY) {
 			if (!p_56306_.isClientSide()) {
 				FluidType fluidType = FluidType.byName(p_56309_.getType());
 				if (fluidType != null) {
@@ -35,7 +35,7 @@ public interface IFluidLoggable extends SimpleWaterloggedBlock {
 	}
 
 	default ItemStack pickupBlock(LevelAccessor p_154560_, BlockPos p_154561_, BlockState p_154562_) {
-		if (p_154562_.hasProperty(ModBlockStateProperties.FLUID)) {
+		if (p_154562_.getValue(ModBlockStateProperties.FLUID).getFluid() != Fluids.EMPTY) {
 			FluidType fluidType = p_154562_.getValue(ModBlockStateProperties.FLUID);
 			p_154560_.setBlock(p_154561_, p_154562_.setValue(ModBlockStateProperties.FLUID, FluidType.EMPTY), 3);
 			if (!p_154562_.canSurvive(p_154560_, p_154561_)) {

@@ -39,10 +39,11 @@ public enum FluidType implements StringRepresentable {
   }
 
   public static FluidType byName(Fluid p_176717_0_) {
-    if (p_176717_0_.getRegistryName().toString() != null) {
-      FluidType fluidType = BY_NAME.get(p_176717_0_.getRegistryName().toString());
-      if (fluidType != null)
+    if (p_176717_0_.getRegistryName().getPath() != null) {
+      FluidType fluidType = BY_NAME.get(p_176717_0_.getRegistryName().getPath());
+      if (fluidType != null) {
         return fluidType;
+      }
       return EMPTY;
     }
     return EMPTY;

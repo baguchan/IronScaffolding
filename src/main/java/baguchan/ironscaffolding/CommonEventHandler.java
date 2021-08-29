@@ -23,7 +23,7 @@ public class CommonEventHandler {
 	public static void tradeEvent(VillagerTradesEvent event) {
 		List<VillagerTrades.ItemListing> trades = event.getTrades().get(1);
 		if (event.getType() == VillagerProfession.TOOLSMITH) {
-			trades.add(new ItemsForEmeralds(new ItemStack(ModBlocks.IRON_SCAFFOLDING), 36, 2, 6, 5, 0.2F));
+			trades.add(new ItemsForEmeralds(new ItemStack(ModBlocks.IRON_SCAFFOLDING), 2, 6, 8, 6, 0.2F));
 		}
 	}
 
