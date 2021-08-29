@@ -1,9 +1,6 @@
 package baguchan.ironscaffolding.client;
 
 import baguchan.ironscaffolding.registry.ModBlocks;
-
-import java.util.Objects;
-
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;

@@ -5,9 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.registries.IForgeRegistryEntry;
 
 @EventBusSubscriber(modid = IronScaffolding.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class ModItems {
