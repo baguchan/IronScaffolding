@@ -21,7 +21,7 @@ public class CommonEventHandler {
 
 	@SubscribeEvent
 	public static void tradeEvent(VillagerTradesEvent event) {
-		List<VillagerTrades.ItemListing> trades = event.getTrades().get(1);
+		List<VillagerTrades.ItemListing> trades = event.getTrades().get(2);
 		if (event.getType() == VillagerProfession.TOOLSMITH) {
 			trades.add(new ItemsForEmeralds(new ItemStack(ModBlocks.IRON_SCAFFOLDING), 2, 6, 8, 6, 0.2F));
 		}
