@@ -37,7 +37,7 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 
 	public static final int STABILITY_MAX_DISTANCE = 7;
 
-	public static final IntegerProperty DISTANCE = BlockStateProperties.DISTANCE;
+	public static final IntegerProperty DISTANCE = BlockStateProperties.STABILITY_DISTANCE;
 
 	public static final EnumProperty<FluidType> FLUIDLOGGED = ModBlockStateProperties.FLUID;
 
