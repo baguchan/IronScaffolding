@@ -25,6 +25,6 @@ public class ModBlocks {
 
   @SubscribeEvent
   public static void registerItemBlocks(RegistryEvent.Register<Item> registry) {
-    ModItems.register(registry, new ScaffoldingBlockItem(IRON_SCAFFOLDING, (new Item.Properties()).tab(CreativeModeTab.TAB_BUILDING_BLOCKS).fireResistant()));
+    ModItems.register(registry, new ScaffoldingBlockItem(IRON_SCAFFOLDING, (new Item.Properties()).tab(CreativeModeTab.TAB_DECORATIONS).fireResistant()));
   }
 }
