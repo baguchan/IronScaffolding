@@ -80,7 +80,7 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 
 	public void onPlace(BlockState p_56062_, Level p_56063_, BlockPos p_56064_, BlockState p_56065_, boolean p_56066_) {
 		if (!p_56063_.isClientSide) {
-			p_56063_.getBlockTicks().scheduleTick(p_56064_, this, 1);
+			p_56063_.scheduleTick(p_56064_, this, 1);
 		}
 
 	}
@@ -88,11 +88,11 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 	public BlockState updateShape(BlockState p_56044_, Direction p_56045_, BlockState p_56046_, LevelAccessor p_56047_, BlockPos p_56048_, BlockPos p_56049_) {
 		if (p_56044_.getValue(FLUIDLOGGED) != FluidType.EMPTY) {
 			Fluid fluid = p_56044_.getValue(FLUIDLOGGED).getFluid();
-			p_56047_.getLiquidTicks().scheduleTick(p_56048_, fluid, fluid.getTickDelay(p_56047_));
+			p_56047_.scheduleTick(p_56048_, fluid, fluid.getTickDelay(p_56047_));
 		}
 
 		if (!p_56047_.isClientSide()) {
-			p_56047_.getBlockTicks().scheduleTick(p_56048_, this, 1);
+			p_56047_.scheduleTick(p_56048_, this, 1);
 		}
 
 		return p_56044_;

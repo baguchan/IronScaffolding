@@ -24,7 +24,7 @@ public interface IFluidLoggable extends SimpleWaterloggedBlock {
 				FluidType fluidType = FluidType.byName(p_56309_.getType());
 				if (fluidType != null) {
 					p_56306_.setBlock(p_56307_, p_56308_.setValue(ModBlockStateProperties.FLUID, fluidType), 3);
-					p_56306_.getLiquidTicks().scheduleTick(p_56307_, p_56309_.getType(), p_56309_.getType().getTickDelay(p_56306_));
+					p_56306_.scheduleTick(p_56307_, p_56309_.getType(), p_56309_.getType().getTickDelay(p_56306_));
 				}
 			}
 
