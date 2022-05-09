@@ -1,8 +1,10 @@
 package baguchan.ironscaffolding;
 
 import baguchan.ironscaffolding.client.ClientRegistrar;
+import baguchan.ironscaffolding.registry.ModBlocks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -19,6 +21,12 @@ public class IronScaffolding {
 	public static final String MODID = "ironscaffolding";
 
 	public IronScaffolding() {
+		IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+		IEventBus forgeBus = MinecraftForge.EVENT_BUS;
+		ModBlocks.BLOCKS.register(modBus);
+		ModBlocks.ITEMS.register(modBus);
+
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);

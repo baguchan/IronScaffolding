@@ -2,29 +2,47 @@ package baguchan.ironscaffolding.registry;
 
 import baguchan.ironscaffolding.IronScaffolding;
 import baguchan.ironscaffolding.block.IronScaffoldingBlock;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ScaffoldingBlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
-@EventBusSubscriber(modid = IronScaffolding.MODID, bus = EventBusSubscriber.Bus.MOD)
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.function.Supplier;
+
 public class ModBlocks {
-  public static final Block IRON_SCAFFOLDING = new IronScaffoldingBlock(BlockBehaviour.Properties.of(Material.DECORATION, MaterialColor.SAND).strength(2.0F, 10.0F).noCollission().sound(SoundType.NETHERITE_BLOCK).dynamicShape());
+  public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, IronScaffolding.MODID);
+  public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, IronScaffolding.MODID);
 
-  @SubscribeEvent
-  public static void registerBlocks(RegistryEvent.Register<Block> registry) {
-    registry.getRegistry().register(IRON_SCAFFOLDING.setRegistryName("iron_scaffolding"));
+
+  public static final RegistryObject<Block> IRON_SCAFFOLDING = register("iron_scaffolding", () -> new IronScaffoldingBlock(BlockBehaviour.Properties.of(Material.DECORATION, MaterialColor.SAND).strength(2.0F, 10.0F).noCollission().sound(SoundType.NETHERITE_BLOCK).dynamicShape()));
+
+  private static <T extends Block> RegistryObject<T> baseRegister(String name, Supplier<? extends T> block, Function<RegistryObject<T>, Supplier<? extends Item>> item) {
+    RegistryObject<T> register = BLOCKS.register(name, block);
+    ITEMS.register(name, item.apply(register));
+    return register;
   }
 
-  @SubscribeEvent
-  public static void registerItemBlocks(RegistryEvent.Register<Item> registry) {
-    ModItems.register(registry, new ScaffoldingBlockItem(IRON_SCAFFOLDING, (new Item.Properties()).tab(CreativeModeTab.TAB_DECORATIONS).fireResistant()));
+  private static <T extends Block> RegistryObject<T> noItemRegister(String name, Supplier<? extends T> block) {
+    RegistryObject<T> register = BLOCKS.register(name, block);
+    return register;
+  }
+
+  private static <B extends Block> RegistryObject<B> register(String name, Supplier<? extends Block> block) {
+    return (RegistryObject<B>) baseRegister(name, block, ModBlocks::registerBlockItem);
+  }
+
+  private static <T extends Block> Supplier<BlockItem> registerBlockItem(final RegistryObject<T> block) {
+    return () -> {
+      return new BlockItem(Objects.requireNonNull(block.get()), new Item.Properties().tab(CreativeModeTab.TAB_BUILDING_BLOCKS));
+    };
   }
 }
