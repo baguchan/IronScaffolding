@@ -141,7 +141,7 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = p_56026_.mutable().move(Direction.DOWN);
 		BlockState blockstate = p_56025_.getBlockState(blockpos$mutableblockpos);
 		int i = 7;
-		if (blockstate.is(ModBlocks.IRON_SCAFFOLDING)) {
+		if (blockstate.is(ModBlocks.IRON_SCAFFOLDING.get())) {
 			i = blockstate.getValue(DISTANCE);
 		} else if (blockstate.isFaceSturdy(p_56025_, blockpos$mutableblockpos, Direction.UP)) {
 			return 0;
@@ -149,7 +149,7 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 
 		for (Direction direction : Direction.Plane.HORIZONTAL) {
 			BlockState blockstate1 = p_56025_.getBlockState(blockpos$mutableblockpos.setWithOffset(p_56026_, direction));
-			if (blockstate1.is(ModBlocks.IRON_SCAFFOLDING)) {
+			if (blockstate1.is(ModBlocks.IRON_SCAFFOLDING.get())) {
 				i = Math.min(i, blockstate1.getValue(DISTANCE) + 1);
 				if (i == 1) {
 					break;

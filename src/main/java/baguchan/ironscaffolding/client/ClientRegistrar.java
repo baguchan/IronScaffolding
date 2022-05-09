@@ -12,7 +12,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 @OnlyIn(Dist.CLIENT)
 public class ClientRegistrar {
 	public static void setup(FMLCommonSetupEvent event) {
-		setRenderLayer(ModBlocks.IRON_SCAFFOLDING, RenderType.cutout());
+		setRenderLayer(ModBlocks.IRON_SCAFFOLDING.get(), RenderType.cutout());
 	}
 
 	private static void setRenderLayer(Block block, RenderType type) {
