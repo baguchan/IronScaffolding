@@ -103,7 +103,7 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 		BlockState blockstate = p_56032_.setValue(DISTANCE, Integer.valueOf(i)).setValue(BOTTOM, Boolean.valueOf(this.isBottom(p_56033_, p_56034_, i)));
 		if (blockstate.getValue(DISTANCE) == 5) {
 			if (p_56032_.getValue(DISTANCE) == 5) {
-				p_56033_.addFreshEntity(FallingBlockEntity.fall(p_56033_, p_56034_, blockstate));
+				FallingBlockEntity.fall(p_56033_, p_56034_, blockstate);
 			} else {
 				p_56033_.destroyBlock(p_56034_, true);
 			}
