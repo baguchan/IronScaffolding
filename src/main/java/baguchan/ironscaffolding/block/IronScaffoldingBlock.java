@@ -38,7 +38,7 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 
 	public static final int STABILITY_MAX_DISTANCE = 7;
 
-	public static final IntegerProperty DISTANCE = BlockStateProperties.STABILITY_DISTANCE;
+	public static final IntegerProperty DISTANCE = IntegerProperty.create("distance", 0, 5);
 
 	public static final EnumProperty<FluidType> FLUIDLOGGED = ModBlockStateProperties.FLUID;
 
@@ -103,7 +103,7 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 		BlockState blockstate = p_56032_.setValue(DISTANCE, Integer.valueOf(i)).setValue(BOTTOM, Boolean.valueOf(this.isBottom(p_56033_, p_56034_, i)));
 		if (blockstate.getValue(DISTANCE) == 7) {
 			if (p_56032_.getValue(DISTANCE) == 7) {
-				p_56033_.addFreshEntity(new FallingBlockEntity(p_56033_, (double) p_56034_.getX() + 0.5D, (double) p_56034_.getY(), (double) p_56034_.getZ() + 0.5D, blockstate.setValue(FLUIDLOGGED, FluidType.EMPTY)));
+				p_56033_.addFreshEntity(FallingBlockEntity.fall(p_56033_, p_56034_, blockstate));
 			} else {
 				p_56033_.destroyBlock(p_56034_, true);
 			}
