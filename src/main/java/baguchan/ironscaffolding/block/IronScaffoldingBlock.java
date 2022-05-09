@@ -36,7 +36,7 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 
 	private static final VoxelShape BELOW_BLOCK = Shapes.block().move(0.0D, -1.0D, 0.0D);
 
-	public static final int STABILITY_MAX_DISTANCE = 7;
+	public static final int STABILITY_MAX_DISTANCE = 57;
 
 	public static final IntegerProperty DISTANCE = IntegerProperty.create("distance", 0, 5);
 
@@ -46,7 +46,7 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 
 	public IronScaffoldingBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, Integer.valueOf(7)).setValue(FLUIDLOGGED, FluidType.EMPTY).setValue(BOTTOM, Boolean.valueOf(false)));
+		this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, Integer.valueOf(5)).setValue(FLUIDLOGGED, FluidType.EMPTY).setValue(BOTTOM, Boolean.valueOf(false)));
 	}
 
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_56051_) {
@@ -101,8 +101,8 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 	public void tick(BlockState p_56032_, ServerLevel p_56033_, BlockPos p_56034_, Random p_56035_) {
 		int i = getDistance(p_56033_, p_56034_);
 		BlockState blockstate = p_56032_.setValue(DISTANCE, Integer.valueOf(i)).setValue(BOTTOM, Boolean.valueOf(this.isBottom(p_56033_, p_56034_, i)));
-		if (blockstate.getValue(DISTANCE) == 7) {
-			if (p_56032_.getValue(DISTANCE) == 7) {
+		if (blockstate.getValue(DISTANCE) == 5) {
+			if (p_56032_.getValue(DISTANCE) == 5) {
 				p_56033_.addFreshEntity(FallingBlockEntity.fall(p_56033_, p_56034_, blockstate));
 			} else {
 				p_56033_.destroyBlock(p_56034_, true);
@@ -114,7 +114,7 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 	}
 
 	public boolean canSurvive(BlockState p_56040_, LevelReader p_56041_, BlockPos p_56042_) {
-		return getDistance(p_56041_, p_56042_) < 7;
+		return getDistance(p_56041_, p_56042_) < 5;
 	}
 
 	public VoxelShape getCollisionShape(BlockState p_56068_, BlockGetter p_56069_, BlockPos p_56070_, CollisionContext p_56071_) {
@@ -140,7 +140,7 @@ public class IronScaffoldingBlock extends Block implements IFluidLoggable {
 	public static int getDistance(BlockGetter p_56025_, BlockPos p_56026_) {
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = p_56026_.mutable().move(Direction.DOWN);
 		BlockState blockstate = p_56025_.getBlockState(blockpos$mutableblockpos);
-		int i = 7;
+		int i = 5;
 		if (blockstate.is(ModBlocks.IRON_SCAFFOLDING.get())) {
 			i = blockstate.getValue(DISTANCE);
 		} else if (blockstate.isFaceSturdy(p_56025_, blockpos$mutableblockpos, Direction.UP)) {
