@@ -1,6 +1,7 @@
 package baguchan.ironscaffolding;
 
 import baguchan.ironscaffolding.registry.ModBlocks;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -14,7 +15,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
-import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = IronScaffolding.MODID)
 public class CommonEventHandler {
@@ -60,7 +60,7 @@ public class CommonEventHandler {
 			this.priceMultiplier = p_35763_;
 		}
 
-		public MerchantOffer getOffer(Entity p_35771_, Random p_35772_) {
+		public MerchantOffer getOffer(Entity p_35771_, RandomSource p_35772_) {
 			return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), new ItemStack(this.itemStack.getItem(), this.numberOfItems), this.maxUses, this.villagerXp, this.priceMultiplier);
 		}
 	}

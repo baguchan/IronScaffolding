@@ -3,6 +3,7 @@ package baguchan.ironscaffolding.block;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -39,8 +40,8 @@ public enum FluidType implements StringRepresentable {
   }
 
   public static FluidType byName(Fluid p_176717_0_) {
-    if (p_176717_0_.getRegistryName().getPath() != null) {
-      FluidType fluidType = BY_NAME.get(p_176717_0_.getRegistryName().getPath());
+    if (ForgeRegistries.FLUIDS.getKey(p_176717_0_).getPath() != null) {
+      FluidType fluidType = BY_NAME.get(ForgeRegistries.FLUIDS.getKey(p_176717_0_).getPath());
       if (fluidType != null) {
         return fluidType;
       }
